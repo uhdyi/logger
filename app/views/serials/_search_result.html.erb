@@ -1,0 +1,10 @@
+<tr>
+  <td><%=h search_result.serial_number %></td>
+  <td><%=h Product.find(search_result.product_id).part_number %></td>
+  <% if permitted_to? :edit, search_result %>
+  <td><%= link_to 'Edit', edit_serial_path(search_result) %></td>
+  <% end %>
+  <% if permitted_to? :destroy, search_result %>
+  <td><%= link_to 'Delete', search_result, :confirm => 'Are you sure?', :method => :destory %></td>
+  <% end %>
+</tr>

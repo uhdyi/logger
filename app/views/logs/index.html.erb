@@ -1,0 +1,55 @@
+<h1>Log Entries</h1>
+
+
+<div class="search-form">
+<% form_tag :action => 'basic_search' do %>
+
+    <fieldset>
+
+    <b>Search</b>
+    <%= select_tag(:category, options_for_select(["Please Select", "Serial Number", "Part Number", "Location", "Status"]), 
+    :onchange => remote_function(
+       :url => {:action => :get_content}, 
+       :with => "'category=' + value")
+    )%>
+
+    <select id="content_options" name="content_options" style="display:inline;width:200px">
+    </select>
+
+    <%= submit_tag 'Go', :class => "submit" %>
+    <%= link_to 'Advance Search', search_logs_path %> 
+
+  </fieldset>
+<% end %>
+</div>
+
+<br />
+
+<div class="log-list">
+<table>
+  <tr>
+    <th width=110>Serial Number</th>
+    <th width=110>Part Number</th>
+    <th width=300>Description</th>
+    <th width=200>Status</th>
+    <th widht=100>Location</th>
+
+  </tr>
+
+  <%= render(:partial => "log_entry", :collection => @logs) %>
+</table>
+</div>
+
+<hr/>
+<%= will_paginate @logs %>
+<hr/>
+
+<br />
+
+<br />
+<% if permitted_to? :create, Log.new %>
+<%= link_to 'New log entry', new_log_path %> | 
+<% end %>
+<% if permitted_to? :to_csv %>
+<%= link_to 'Export to CSV', to_csv_logs_path %>
+<% end %>

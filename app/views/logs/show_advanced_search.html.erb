@@ -1,0 +1,20 @@
+<h1>Search Result: <%= pluralize(@logs.count, "log") %> found</h1>
+
+<div class="log-list">
+<table>
+  <tr>
+    <th width=110>Serial Number</th>
+    <th width=110>Part Number</th>
+    <th width=300>Description</th>
+    <th width=200>Status</th>
+    <th widht=100>Location</th>
+  </tr>
+
+  <%= render(:partial => "log_entry", :collection => @logs) %>
+</table>
+</div>
+
+<br />
+
+<%= link_to 'Back', search_logs_path %>
+

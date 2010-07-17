@@ -1,0 +1,12 @@
+<p>
+  <b>Serial number:</b>
+  <%=h @serial.serial_number %>
+  <br />
+  <b>Part Number:</b>
+  <%=h Product.find(@serial.product_id).part_number %>
+</p>
+
+<% if permitted_to? :edit, @serial %>
+<%= link_to 'Edit', edit_serial_path(@serial) %> |
+<% end %>
+<%= link_to 'Back', serials_path %>

@@ -1,0 +1,30 @@
+<p>
+  <b>Part number:</b>
+  <%= highlight(log_detail.product.part_number, @keywords) %>
+</p>
+
+<p>
+  <b>Serial number:</b>
+  <%= highlight(log_detail.serial_number, @keywords) %>
+</p>
+
+
+<p>
+  <b>Entries:</b>
+  <ul>
+    <% for entry in log_detail.entries %>
+
+    <li><i>Edited by <%= highlight(User.find(entry.user_id).name, @keywords) %>
+        at <%=h entry.created_at %>
+        from <%= highlight(Location.find(entry.location_id).name, @keywords) %>,
+	status: <%=h Status.find(entry.status_id).name %>
+	</i>
+    </li>
+    <p><%=h entry.content %></p>
+    <br>
+    <% end %>
+  </ul>
+</p>
+
+<!--<%= link_to 'Append', edit_log_path(log_detail) %>-->
+<div id="break"></div>

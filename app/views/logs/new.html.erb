@@ -1,0 +1,37 @@
+<h1>New Log Entry</h1>
+
+<% form_for(@log) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :serial_number %><br />
+    <%= text_field_with_auto_complete 'serials', 'serial_number',
+	{:url => {:action => 'find_serials'}, :method => 'get', :with => "'search='+element.value"}
+	%>
+  </p>
+  <p>
+    <%= f.label :part_number %><br />
+    <%= collection_select(:product, :id, Product.all.sort{|a, b| a.part_number <=> b.part_number}, :id, :part_number,{:include_blank => 'Please Select'}) %>
+  </p>
+
+  <!--
+  <p>
+    <%= f.label :log %><br />
+    <%= text_area_tag :content, nil, :rows => 10, :cols => 40 %>
+  </p>
+-->
+  <p>
+    <%= f.label :status %><br />
+    <%= collection_select(:status, :id, Status.all.sort{|a, b| a.name <=> b.name}, :id, :name, {:include_blank => 'Please Select'}) %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= collection_select(:location, :id, Location.all.sort{|a, b| a.name <=> b.name}, :id, :name_with_detail, {:include_blank => 'Please Select'}) %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', logs_path %>

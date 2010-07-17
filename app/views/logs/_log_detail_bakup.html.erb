@@ -1,0 +1,14 @@
+<% for entry in log_detail.entries %>
+<tr>
+  <td><%= log_detail.product.serial.serial_number %></td>
+  <td><%= log_detail.product.part_number %></td>
+  <td><%= log_detail.product.description %></td>
+  <td><%=h Status.find(entry.status_id).name %></td>
+  <td><%=h Location.find(entry.location_id).name %></td>
+  <td><%=h entry.created_at %></td>
+  <td><%=h User.find(entry.user_id).name %></td>
+</tr>
+<% end %>
+
+<!--<%= link_to 'Append', edit_log_path(log_detail) %>-->
+

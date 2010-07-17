@@ -1,0 +1,7 @@
+<h1>Search Result: <%= pluralize(@logs.count, "log") %> found</h1>
+
+<%= render(:partial =>"log_detail", :collection => @logs) %>
+
+<br />
+
+<%= link_to 'Back', logs_path %>

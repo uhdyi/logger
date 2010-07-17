@@ -1,0 +1,47 @@
+<h1>Locations</h1>
+
+<div class="search-form">
+  <% form_tag locations_path, :method => 'get' do %>
+  <fieldset>
+    <b>Search</b>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag 'Go', :name => nil %>
+  </fieldset>
+  <% end %>
+</div>
+
+<br />
+
+<div class="log-list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Detail</th>
+    <th>Code</th>
+  </tr>
+  
+  <% @locations.each do |location| %>
+     <tr>
+       <td><%=h location.name %></td>
+       <td><%=h location.detail %></td>
+       <td><%=h location.code %></td>
+       <% if permitted_to? :edit, location %>
+       <td><%= link_to 'Edit', edit_location_path(location) %></td>
+       <% end %>
+       <% if permitted_to? :delete, location %>
+   <td><%= link_to 'Delete', location, :confirm => 'Are you sure?', :method => :delete %></td>
+       <% end %>
+     </tr>
+  <% end %>
+</table>
+</div>
+
+<hr/>
+<%= will_paginate @locations %>
+<hr/>
+
+<br />
+<br />
+<% if permitted_to? :create, Location.new %>
+<%= link_to 'New Location', new_location_path %>
+<% end %>

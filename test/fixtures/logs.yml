@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  serial_id: 1
+
+two:
+  serial_id: 1
+

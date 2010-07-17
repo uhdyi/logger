@@ -1,0 +1,28 @@
+<h1>Ed user</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :disabled => true %>
+  </p>
+  <p>
+    <%= f.label :hashed_password, 'Password' %><br />
+    <!-- <%= f.text_field :hashed_password %> -->
+    <!-- <%= text_field_tag :password %> -->
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :salt, 'Confirm Password ' %><br />
+    <!-- <%= f.text_field :salt %> -->
+    <!-- <%= text_field_tag :confirm %> -->
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>

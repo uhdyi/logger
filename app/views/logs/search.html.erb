@@ -1,0 +1,33 @@
+<h1>Search logs</h1>
+
+<% form_tag :action => 'show_advanced_search' do %>
+
+<p>
+   <%= label_tag :serial_number, "Serial Number:" %>
+   <%= collection_select(:serial, :id, Serial.all, :id, :serial_number, {:include_blank => 'Please Select'}) %>
+</p>
+
+<p>
+   <%= label_tag :part_number, "Part Number:" %>
+   <%= collection_select(:product, :id, Product.all, :id, :part_number, {:include_blank => 'Please Select'}) %>
+</p>
+
+<p>
+   <%= label_tag :user, "User Name:" %>
+    <%= collection_select(:user, :id, User.all, :id, :name, {:include_blank => 'Please Select'}) %>
+</p>
+
+<p>
+  <%= label_tag :location, "Location:" %>
+  <%= collection_select(:location, :id, Location.all, :id, :name, {:include_blank => 'Please Select'}) %>
+</p>
+
+<p>
+   <%= submit_tag 'Search', :class => "submit"  %>
+</p>
+
+<% end %>
+
+<div id="break"></div>
+
+

@@ -1,0 +1,21 @@
+<div class="log-list">
+<table>
+  <tr>
+    <th width=110>Serial Number</th>
+    <th width=110>Part Number</th>
+    <th width=300>Description</th>
+    <th>Status</th>
+    <th>Location</th>
+    <th>Time</th>
+    <th>User</th>
+  </tr>
+
+<%= render(:partial =>"log_detail", :object => @log) %>
+</table>
+</div>
+
+<br />
+<% if permitted_to? :edit, @log %>
+<%= link_to 'Edit', edit_log_path(@log) %> | 
+<% end %>
+<%= link_to 'Back', logs_path %>

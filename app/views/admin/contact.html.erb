@@ -1,0 +1,25 @@
+<h1>Contact Admin</h1>
+
+<% form_tag :action => 'email' do %>
+
+  <p>
+  <%= label_tag 'subject' %><br />
+  <%= text_field_tag 'subject','', :size => 35 %><br />
+  </p>
+
+  <p>
+  <%= label_tag 'message' %><br />
+  <%= text_area_tag 'message', nil, :rows => 10, :cols => 40 %><br />
+  </p>
+
+  <p>
+  <%= label_tag 'your_email' %><br />
+  <%= text_field_tag 'sender', '', :size => 35 %><br />
+  </p>
+
+  <p>
+  <%= submit_tag 'submit' %>
+  </p>
+
+<% end %>
+

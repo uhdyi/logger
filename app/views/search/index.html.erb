@@ -1,0 +1,28 @@
+<h1>Search Logs</h1>
+
+<div>
+  <% form_for :log, :url => {:action => :show } do |f| %>
+    <%= f.error_messages %>
+
+     <p>
+       <%= f.label :part_number, "Part Number:" %>
+       <%= collection_select(:log, :part_number_id, Product.all, :id, :part_number, {:include_blank => 'Please Select'}) %>
+     </p>
+
+     <p>
+	<%= f.label :serial_number, "Serial Number:" %>
+	<%= f.text_field :serial %>
+     </p>
+
+     <p>
+	<%= f.label :user, "User Name:" %>
+	<%= f.text_field :user %>
+     </p>
+
+      <p>
+	<%= f.submit 'Search' %>
+      </p>
+
+
+  <% end %>
+</div>

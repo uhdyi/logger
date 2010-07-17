@@ -1,0 +1,36 @@
+<h1>Part Numbers</h1>
+
+<div class="search-form">
+  <% form_tag products_path, :method => 'get' do %>
+  <fieldset>
+    <b>Search</b>
+    <%= collection_select(:search, :id, Product.all.sort{|a,b| a.part_number <=> b.part_number}, :id, :part_number, {:include_blank => 'Please Select'}) %>
+    <%= submit_tag 'Go', :name => nil %>
+  </fieldset>
+  <% end %>
+</div>
+
+<br />
+
+
+<div class="log-list">
+<table>
+  <tr>
+    <th width=200>Part Number</th>
+    <th width=400>Description</th>
+  </tr>
+  
+  <%= render(:partial => "search", :collection => @products) %>
+
+</table>
+</div>
+
+<hr/>
+<%= will_paginate @products %>
+<hr/>
+
+<br />
+<br />
+<% if permitted_to? :create, Product.new %>
+<%= link_to 'New Part Number', new_product_path %>
+<% end %>

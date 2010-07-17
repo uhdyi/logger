@@ -1,0 +1,9 @@
+<tr>
+
+  <td><%= link_to Serial.find(log_entry.serial_id).serial_number, log_entry %></td>
+  <td><%=h Product.find(Serial.find(log_entry.serial_id).product_id).part_number %></td>
+  <td><%=h Product.find(Serial.find(log_entry.serial_id).product_id).description %></td>
+  <td><%=h Status.find(log_entry.latest_entry.status_id).name %></td>
+  <td><%=h Location.find(log_entry.latest_entry.location_id).name %></td>  
+
+</tr>

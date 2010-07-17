@@ -1,0 +1,28 @@
+<h1>Statuses</h1>
+
+<div class="log-list">
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+  </tr>
+
+<% @statuses.each do |status| %>
+  <tr>
+    <td><%=h status.id %></td>
+    <td><%=h status.name %></td>
+    <% if permitted_to? :edit, status %>
+    <td><%= link_to 'Edit', edit_status_path(status) %></td>
+    <% end %>
+    <% if permitted_to? :delete, status %>
+    <td><%= link_to 'Delete', status, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<br />
+<% if permitted_to? :create, Status.new %>
+<%= link_to 'New status', new_status_path %>
+<% end %>

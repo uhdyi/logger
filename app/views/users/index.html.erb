@@ -1,0 +1,29 @@
+<h1>Manage Users</h1>
+
+<div class="log-list">
+<table>
+  <tr>
+    <th width=110>Name</th>
+    <th width=110>Email</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%=h user.name %></td>
+    <td><%=h user.email %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <% if !user.admin %>
+    <td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<hr/>
+<%= will_paginate @users %>
+<hr/>
+
+<br />
+
+<%= link_to 'New user', new_user_path %>

@@ -1,0 +1,10 @@
+<tr>
+  <td><%=h search.part_number %></td>
+  <td><%=h search.description %></td>
+  <% if permitted_to? :edit, search %>
+  <td><%= link_to 'Edit', edit_product_path(search) %></td>
+  <% end %>
+  <% if permitted_to? :destroy, search %>
+  <td><%= link_to 'Delete', search, :confirm => 'Are you sure?', :method => :destroy %></td>
+  <% end %>
+</tr>

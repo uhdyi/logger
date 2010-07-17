@@ -1,0 +1,40 @@
+<h1>Edit log entry</h1>
+
+<% form_for(@log) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :serial_number %><br />
+    <%= collection_select(:serial, :id, Serial.all, :id, :serial_number, {:include_blank => 'Please Select', :selected => @log.serial_id}, :disabled => true) %>
+  </p>
+
+  <p>
+    <%= f.label :part_number %><br />
+    <%= collection_select(:product, :id, Product.all, :id, :part_number,{:include_blank => 'Please Select', :selected => Serial.find(@log.serial_id).product_id}, :disabled => true) %>
+  </p>
+
+<!--
+  <p>
+    <%= f.label :log, 'Entry' %><br />
+    <%= text_area_tag 'entry', @content, :rows => 10, :cols => 40, :disabled => true %>
+  </p>
+  <p>
+    <%= f.label :log, 'Text To Append To Entry' %><br />
+    <%= text_area_tag :log, nil, :rows => 10, :cols => 40 %>
+  </p>
+-->
+  <p>
+    <%= f.label :status %><br />
+    <%= collection_select(:status, :id, Status.all.sort{|a, b| a.name <=> b.name}, :id, :name, {:include_blank => 'Please Select'}) %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= collection_select(:location, :id, Location.all.sort{|a, b| a.name <=> b.name}, :id, :name, {:include_blank => 'Please Select'}) %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @log %> |
+<%= link_to 'Back', logs_path %>

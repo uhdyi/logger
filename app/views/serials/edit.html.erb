@@ -1,0 +1,20 @@
+<h1>Edit Serial Number</h1>
+
+<% form_for(@serial) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :serial_number %><br />
+    <%= f.text_field :serial_number %>
+  </p>
+  <p>
+    <%= f.label :part_number %><br />
+    <%= collection_select(:product, :id, Product.all.sort{|a, b| a.part_number <=> b.part_number}, :id, :part_number, {:include_blank => 'Please Select'}) %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Back', serials_path %>
